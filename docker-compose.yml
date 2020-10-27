@@ -1,0 +1,18 @@
+version: "2"
+services:
+  web:
+    build: .
+    command: python manage.py runserver -h 0.0.0.0 -p 5000
+#    command: python manage.py runserver -h 0.0.0.0
+    volumes:
+      - .:/code
+    ports:
+      - "5000:5000"
+    links:
+      - db
+  db:
+    image: mongo
+    ports:
+      - 27017
+    volumes:
+      - /Data/db:/data/db
